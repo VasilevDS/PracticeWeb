@@ -14,7 +14,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findByLogin(String login) throws SQLException {
         connection = cm.getConnection();
-        String query = "SELECT * FROM USER_WEB where LOGIN=" + login;
+        String query = "SELECT * FROM USER_WEB where LOGIN= \'" +login + "\'";
         User user = null;
         if(connection != null) {
             Statement statement = null;
@@ -33,6 +33,7 @@ public class UserDaoImpl implements UserDao {
                 statement.close();
                 connection.close();
             } catch (SQLException e) {
+                System.out.println(query);
                 e.printStackTrace();
                 statement.close();
                 connection.close();

@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
             User findUser = userDao.findByLogin(user.getLogin());
             if (findUser != null) {
                 if(DigestUtils.md5DigestAsHex((user.getPassword()).getBytes()).equals(findUser.getPassword()))
-                    return "Logged in as user: id"+ user.getId() + " " + user.getName() + " " + user.getSurname();
+                    return "Logged in as user: id"+ findUser.getId() + " " + findUser.getName() + " " + findUser.getSurname();
                 else return "Incorrect password";
             }
             else return "invalid login";
